@@ -1,0 +1,67 @@
+What should be trivial:
+    * Finding tags for a given file.
+    * Finding files for a given tag.
+    * Adding a tag to a given file.
+    * Removing a tag from a given file.
+
+What should be possible but unimportant:
+    * Finding files for a combination of tags.
+    * Giving tags descriptions.
+    * Marking tags as related.
+
+Structure:
+    .tigger dir in any tagged folder.
+    'tags' dir in there, with each file in it being named for one tag
+      - maybe also split into subdirs by first two chars of tag, so as to
+      avoid having many files all in a single dir
+    each tag file begins with a description, then a blank line, then one filename per line
+    'index' file also in .tigger, alternates between filename lines and taglist lines
+    'tags' used for quickly listing files by tag, 'index' used for quickly listing tags by file
+    'index' automatically regenerated after any command that modifies a tags file
+
+Commands:
+    tigger reindex            // force a reindex
+    tigger tag $file $tag [$tag ..]
+    tigger untag $file $tag [$tag ..]
+    tigger files $tag
+    tigger tags $file
+    tigger mv $file $newfile  // does an mv, and preserves tags
+    tigger cp $file $newfile  // does a cp, and duplicates tags
+    tigger rm $file           // does an rm, and removes tags
+
+Pseudocode:
+    reindex:
+        if index is nonexistent, create it, and set new_index=true
+        for each tagfile in tags:
+            if last modified date is more recent than index's l.m.d, or new_index==true, add $tag to the hashmap for each filename it contains, creating a new entry for file if needed
+        iterate over the hashmap, dumping out in the index format specified above
+
+    tag $file $tag [$tag ..]:
+        if $file is not in current directory, move to $file's directory
+        for each $tag:
+            check existence of tags file for $tag, create if nonexistent
+            append $file name to it
+        do reindex
+
+    untag $file $tag [$tag ..]:
+        if $file is not in current directory, move to $file's directory
+        for each $tag:
+            check existence of tags file for $tag, skip $tag if nonexistent
+            remove $file name from it
+        do reindex
+
+    files $tag:
+        start with a list
+        walk the tree from here, gathering a list of all subdirs plus .
+        iterating over the dir list, for each dir:
+            if $tag is in tags for dir, add files to the list, with path relative to starting dir
+        dump the list to STDOUT, one file per line
+
+    tags $file:
+        if $file is not in current directory, move to $file's directory
+        do reindex
+        search index for $file, print out its taglist if found, otherwise "untagged"
+
+    mv, cp, rm:
+        mimic OS behavior for these, modifying tags afterwards as needed
+        do reindex
