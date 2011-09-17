@@ -1,127 +1,131 @@
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 
-#define CMD_TAG 0x01
-#define CMD_UNTAG 0x02
-#define CMD_FILES 0x04
-#define CMD_TAGS 0x08
-#define CMD_MV 0x10
-#define CMD_CP 0x20
-#define CMD_RM 0x40
-#define CMD_ALL 0x7f
-
-void print_usage (char*, int);
-int tag (char*, int, char* []);
-int untag (char*, int, char* []);
-int files (char*);
-int tags (char*);
-int tagged_mv (int, char* [], char*);
-int tagged_cp (int, char* [], char*);
-int tagged_rm (int, char* []);
+#include "tigger.h"
 
 
 int main (int argc, char* argv []) {
     if (argc == 1) {
         print_usage(argv[0], CMD_ALL);
-        return 0;
+        return NO_ERR;
     }
 
     if (!strcmp("tag", argv[1])) {
         if (argc < 4) {
             printf("tag: too few arguments\n\n");
             print_usage(argv[0], CMD_TAG);
-            return 1;
+            return ERR_WRONG_NUM_ARGS;
         }
         return tag(argv[2], argc-3, argv+3);
     } else if (!strcmp("untag", argv[1])) {
         if (argc < 4) {
             printf("untag: too few arguments\n\n");
             print_usage(argv[0], CMD_UNTAG);
-            return 1;
+            return ERR_WRONG_NUM_ARGS;
         }
         return untag(argv[2], argc-3, argv+3);
     } else if (!strcmp("files", argv[1])) {
         if (argc != 3) {
             printf("files: wrong number of arguments\n\n");
             print_usage(argv[0], CMD_FILES);
-            return 1;
+            return ERR_WRONG_NUM_ARGS;
         }
         return files(argv[2]);
     } else if (!strcmp("tags", argv[1])) {
         if (argc != 3) {
             printf("tags: wrong number of arguments\n\n");
             print_usage(argv[0], CMD_TAGS);
-            return 1;
+            return ERR_WRONG_NUM_ARGS;
         }
         return tags(argv[2]);
     } else if (!strcmp("mv", argv[1])) {
         if (argc < 4) {
             printf("mv: too few arguments\n\n");
             print_usage(argv[0], CMD_MV);
-            return 1;
+            return ERR_WRONG_NUM_ARGS;
         }
         return tagged_mv(argc-3, argv+2, argv[argc-1]);
     } else if (!strcmp("cp", argv[1])) {
         if (argc < 4) {
             printf("cp: too few arguments\n\n");
             print_usage(argv[0], CMD_CP);
-            return 1;
+            return ERR_WRONG_NUM_ARGS;
         }
         return tagged_mv(argc-3, argv+2, argv[argc-1]);
     } else if (!strcmp("rm", argv[1])) {
         if (argc < 3) {
             printf("rm: too few arguments\n\n");
             print_usage(argv[0], CMD_RM);
-            return 1;
+            return ERR_WRONG_NUM_ARGS;
         }
         return tagged_rm(argc-2, argv+2);
     } else {
         printf("%s: unrecognized command\n\n", argv[1]);
         print_usage(argv[0], CMD_ALL);
-        return 1;
+        return ERR_BAD_CMD;
     }
 }
 
 
 int tag (char* target_fname, int tag_count, char* tag_list[])
 {
-    return 0;
+    char working_dir[FILENAME_MAX];
+
+    if (!(getcwd(working_dir, sizeof(working_dir)))) {
+        printf("Couldn't get current working directory, bailing out!\n");
+        return ERR_CWD_NOT_FOUND;
+    }
+
+    reindex(working_dir);
+
+    return NO_ERR;
 }
 
 
 int untag (char* target_fname, int tag_count, char* tag_list[])
 {
-    return 0;
+    return NO_ERR;
 }
 
 
 int files (char* tag_name)
 {
-    return 0;
+    return NO_ERR;
 }
 
 
 int tags (char* filename)
 {
-    return 0;
+    return NO_ERR;
 }
 
 
 int tagged_mv (int fname_count, char* fname_list[], char* target_loc)
 {
-    return 0;
+    return NO_ERR;
 }
 
 
 int tagged_cp (int fname_count, char* fname_list[], char* target_loc)
 {
-    return 0;
+    return NO_ERR;
 }
 
 
 int tagged_rm (int fname_count, char* fname_list[])
 {
-    return 0;
+    return NO_ERR;
+}
+
+
+int reindex (char* target_dir)
+{
+    int new_index = 0;
+
+    printf("%s", target_dir);
+
+    return NO_ERR;
 }
 
 
