@@ -10,5 +10,5 @@ clean:
 tigger: tigger.o
 	${CC} -o tigger ${FLAGS} tigger.o
 
-tigger.o: tigger.c
+tigger.o: tigger.c tigger.h
 	${CC} -o tigger.o ${FLAGS} -c tigger.c
