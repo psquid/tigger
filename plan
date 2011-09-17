@@ -20,7 +20,6 @@ Structure:
     'index' automatically regenerated after any command that modifies a tags file
 
 Commands:
-    tigger reindex            // force a reindex
     tigger tag $file $tag [$tag ..]
     tigger untag $file $tag [$tag ..]
     tigger files $tag
