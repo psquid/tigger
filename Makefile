@@ -1,5 +1,5 @@
-CC=gcc
-FLAGS=-Wall -pedantic -g
+CC=clang
+FLAGS=-Wall -Wextra -fwrapv -pedantic -g
 
 all: tigger
 
