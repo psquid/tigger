@@ -1,3 +1,6 @@
+ifeq (${CC},cc)
+	CC=clang
+endif
 ifndef CC
 	CC=clang
 endif
