@@ -1,5 +1,7 @@
-CC=clang
-FLAGS=-Wall -Wextra -fwrapv -pedantic -g
+ifndef CC
+	CC=clang
+endif
+FLAGS+=-Wall -Wextra -fwrapv -pedantic -g
 
 all: tigger
 
