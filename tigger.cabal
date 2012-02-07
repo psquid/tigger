@@ -1,0 +1,11 @@
+Name:           Tigger
+Version:        0.1
+Cabal-Version:  >= 1.2
+License:        BSD3
+Author:         Psychedelic Squid
+Synopsis:       A barebones CLI file tagging tool
+Build-Type:     Simple
+
+Executable tigger
+    Build-Depends:  base, containers
+    Main-Is:        tigger.hs
