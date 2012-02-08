@@ -19,6 +19,7 @@ How do I use it?
 Usage: `tigger [-hnv] COMMAND [ARGUMENT ...]`
 
 Option explanations:
+
  * `-n`, `--no-recurse`: Don't work with tags/files in directories below the current one.
  * `-v`, `--verbose`:    Print messages when doing something. Primarily for debugging.
  * `-h`, `--help`:       Print a help message describing these options.
