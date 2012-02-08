@@ -16,4 +16,34 @@ Two reasons:
 How do I use it?
 ----------------
 
-TODO: Document parameters and usage here.
+Usage: `tigger [-hnv] COMMAND [ARGUMENT ...]`
+
+Option explanations:
+ * `-n`, `--no-recurse`: Don't work with tags/files in directories below the current one.
+ * `-v`, `--verbose`:    Print messages when doing something. Primarily for debugging.
+ * `-h`, `--help`:       Print a help message describing these options.
+
+
+Valid commands are:
+
+ * tag
+   - Usage: `tigger [-nv] tag TAG FILE [FILE ...]`
+   - Tags all FILEs with the tag TAG.
+ * untag,
+   - Usage: `tigger [-nv] untag TAG FILE [FILE ...]`
+   - Removes the tag TAG from all FILEs that have it.
+ * files
+   - Usage: `tigger [-nv] files TAG`
+   - Lists all files which have the tag TAG.
+ * tags
+   - Usage: `tigger [-nv] tags FILE [FILE ...]`
+   - Lists all tags for each FILE.
+ * mv
+   - Usage: `tigger [-nv] mv SRCFILE DESTFILE`
+   - Moves/renames SRCFILE to DESTFILE, and updates the tagging data to reflect the change.
+ * cp
+   - Usage: `tigger [-nv] cp SRCFILE DESTFILE`
+   - Copies SRCFILE to DESTFILE, and updates the tagging data to reflect the change.
+ * rm
+   - Usage: `tigger [-nv] rm FILE [FILE ...]`
+   - Deletes all FILEs, and updates the tagging data to reflect the change.
