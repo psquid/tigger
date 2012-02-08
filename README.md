@@ -29,22 +29,22 @@ Valid commands are:
 
  * tag
    - Usage: `tigger [-nv] tag TAG FILE [FILE ...]`
-   - Tags all FILEs with the tag TAG.
+   - Tags all `FILE`s with the tag `TAG`.
  * untag,
    - Usage: `tigger [-nv] untag TAG FILE [FILE ...]`
-   - Removes the tag TAG from all FILEs that have it.
+   - Removes the tag `TAG` from all `FILE`s that have it.
  * files
    - Usage: `tigger [-nv] files TAG`
-   - Lists all files which have the tag TAG.
+   - Lists all files which have the tag `TAG`.
  * tags
    - Usage: `tigger [-nv] tags FILE [FILE ...]`
-   - Lists all tags for each FILE.
+   - Lists all tags for each `FILE`.
  * mv
    - Usage: `tigger [-nv] mv SRCFILE DESTFILE`
-   - Moves/renames SRCFILE to DESTFILE, and updates the tagging data to reflect the change.
+   - Moves/renames `SRCFILE` to `DESTFILE`, and updates the tagging data to reflect the change.
  * cp
    - Usage: `tigger [-nv] cp SRCFILE DESTFILE`
-   - Copies SRCFILE to DESTFILE, and updates the tagging data to reflect the change.
+   - Copies `SRCFILE` to `DESTFILE`, and updates the tagging data to reflect the change.
  * rm
    - Usage: `tigger [-nv] rm FILE [FILE ...]`
-   - Deletes all FILEs, and updates the tagging data to reflect the change.
+   - Deletes all `FILE`s, and updates the tagging data to reflect the change.
